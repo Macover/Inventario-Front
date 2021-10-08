@@ -11,13 +11,16 @@ import EstatusItems from './Components/ComponenteEstatusItem.js'
 function App() {
   return (
     <div className="App">
-      <UsuarioComponente/>
-      <RolComponente/>
-      {/* <CovidComponente/> */}
+      
+      {/* <UsuarioComponente/> */}
+      {/* <ItemComponente/> */}
       {/* <AreaComponente/> */}
-      <ItemComponente/>
       {/* <CategoriaItemComponente/> */}
+      {/* <RolComponente/> */}
       {/* <EstatusItems/> */}
+      
+      
+      {/* <CovidComponente/> */}
       {/* <ComponenteAlbum/> */}
     </div>
   );

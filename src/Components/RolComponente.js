@@ -24,13 +24,10 @@ const GetRols = () =>{
         }else{
             return(
                 rols.map(rol => (
-                    
-                    rols.map(rol => (
-                        <tr key={rol.idRol}>
-                            <th>{(rol.idRol === undefined ? ' ' : rol.idRol)}</th>
-                            <th>{(rol.nombreRol === undefined ? ' ' : rol.nombreRol)}</th>
-                        </tr>               
-                    ))              
+                    <tr key={rol.idRol}>
+                        <th>{(rol.idRol === undefined ? ' ' : rol.idRol)}</th>
+                        <th>{(rol.nombreRol === undefined ? ' ' : rol.nombreRol)}</th>
+                    </tr>               
                 ))
             )
         }

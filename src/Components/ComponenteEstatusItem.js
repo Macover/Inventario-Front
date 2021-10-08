@@ -13,6 +13,27 @@ const GetEstatusItems = () =>{
     },[]);
     console.log("Estatus item",estatusItems);
 
+    const validaCategoriaItem = () =>{
+        if (Object.entries(estatusItems).length === 0){
+            return(
+                <tr>
+                    <th>Sin datos</th>
+                    <th>Sin datos</th>
+                    <th>Sin datos</th>
+                </tr> 
+            )
+        }else{
+            return(
+                estatusItems.map(estatusItem => (
+                    <tr key={estatusItem.idEstatus}>
+                        <th>{(estatusItem.idEstatus === undefined ? ' ' : estatusItem.idEstatus)}</th>
+                        <th>{(estatusItem.estado === undefined ? ' ' : estatusItem.estado)}</th>
+                    </tr>               
+                ))
+            )
+        }
+    }
+
     return (
         <div>
             <h1>Estatus Items:</h1>
@@ -21,12 +42,7 @@ const GetEstatusItems = () =>{
                     <th>Numero ID</th>
                     <th>Estado</th>
                 </tr>
-                {estatusItems.map(estatusItem => (
-                    <tr key={estatusItem.idEstatus}>
-                        <th>{(estatusItem.idEstatus === undefined ? ' ' : estatusItem.idEstatus)}</th>
-                        <th>{(estatusItem.estado === undefined ? ' ' : estatusItem.estado)}</th>
-                    </tr>               
-                ))}
+                {validaCategoriaItem()}
             </table>
         </div>
     )

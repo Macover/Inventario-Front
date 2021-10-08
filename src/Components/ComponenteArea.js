@@ -13,6 +13,28 @@ const GetAreas = () =>{
     },[]);
     console.log("areas",areas);
 
+    const validaAreas = () =>{
+        if (Object.entries(areas).length === 0){
+            return(
+                <tr>
+                    <th>Sin datos</th>
+                    <th>Sin datos</th>
+                    <th>Sin datos</th>
+                    <th>Sin datos</th>
+                </tr> 
+            )
+        }else{
+            return(
+                areas.map(area => (
+                    <tr key={area.idArea}>
+                        <th>{(area.idArea === undefined ? ' ' : area.idArea)}</th>
+                        <th>{(area.nombreArea === undefined ? ' ' : area.nombreArea)}</th>
+                    </tr>               
+                ))
+            )
+        }
+    }
+
     return (
         <div>
             <h1>Areas:</h1>
@@ -20,13 +42,8 @@ const GetAreas = () =>{
                 <tr>
                     <th>Id Area </th>
                     <th>Nombre Area</th>
-                </tr>
-                {areas.map(area => (
-                    <tr key={area.idArea}>
-                        <th>{(area.idArea === undefined ? ' ' : area.idArea)}</th>
-                        <th>{(area.nombreArea === undefined ? ' ' : area.nombreArea)}</th>
-                    </tr>               
-                ))}
+                </tr>      
+                {validaAreas()}  
             </table>
         </div>
     )

@@ -13,6 +13,30 @@ const GetItems = () =>{
     },[]);
     console.log("items",items);
 
+    const validaComponenteItem = () =>{
+        if (Object.entries(items).length === 0){
+            return(
+                <tr>
+                    <th>Sin datos</th>
+                    <th>Sin datos</th>
+                    <th>Sin datos</th>
+                    <th>Sin datos</th>
+                </tr> 
+            )
+        }else{
+            return(
+                items.map(item => (
+                    <tr key={item.idItem}>
+                        <th>{(item.idItem === undefined ? ' ' : item.idItem)}</th>
+                        <th>{(item.numSerie === undefined ? ' ' : item.numSerie)}</th>
+                        <th>{(item.nombreItem === undefined ? ' ' : item.nombreItem)}</th>
+                        <th>{(item.descripcion === undefined ? ' ' : item.descripcion)}</th>
+                    </tr>               
+                ))
+            )
+        }
+    }
+
     return (
         <div>
             <h1>Items: </h1>
@@ -23,14 +47,7 @@ const GetItems = () =>{
                     <th>Nombre Item</th>
                     <th>Decripcion</th>
                 </tr>
-                {items.map(item => (
-                    <tr key={item.idItem}>
-                        <th>{(item.idItem === undefined ? ' ' : item.idItem)}</th>
-                        <th>{(item.numSerie === undefined ? ' ' : item.numSerie)}</th>
-                        <th>{(item.nombreItem === undefined ? ' ' : item.nombreItem)}</th>
-                        <th>{(item.descripcion === undefined ? ' ' : item.descripcion)}</th>
-                    </tr>               
-                ))}
+                {validaComponenteItem()}
             </table>
         </div>
     )
