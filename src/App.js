@@ -7,6 +7,9 @@ import UsuarioComponente from './Components/ComponenteUsuarios.js'
 import ItemComponente from './Components/ComponenteItem.js'
 import CategoriaItemComponente from './Components/ComponenteCategoriaItem.js'
 import EstatusItems from './Components/ComponenteEstatusItem.js'
+import SancionesAplicadasComponente from './Components/ComponenteSancionAplicada.js'
+import ReporteUsuarioComponente from './Components/ComponenteReporteUsuario.js'
+
 
 function App() {
   return (
@@ -18,6 +21,8 @@ function App() {
       {/* <CategoriaItemComponente/> */}
       {/* <RolComponente/> */}
       {/* <EstatusItems/> */}
+      {/* <SancionesAplicadasComponente/> */}
+      <ReporteUsuarioComponente/>
       
       
       {/* <CovidComponente/> */}
