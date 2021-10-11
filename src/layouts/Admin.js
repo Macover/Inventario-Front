@@ -1,93 +1,155 @@
-/*!
-
-=========================================================
-* Paper Dashboard React - v1.3.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/paper-dashboard-react
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-
-* Licensed under MIT (https://github.com/creativetimofficial/paper-dashboard-react/blob/main/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-import React from "react";
-// javascript plugin used to create scrollbars on windows
-import PerfectScrollbar from "perfect-scrollbar";
-import { Route, Switch, useLocation } from "react-router-dom";
-
-import DemoNavbar from "components/Navbars/DemoNavbar.js";
+// Chakra imports
+import { ChakraProvider, Portal, useDisclosure } from "@chakra-ui/react";
+import Configurator from "components/Configurator/Configurator";
 import Footer from "components/Footer/Footer.js";
+// Layout components
+import AdminNavbar from "components/Navbars/AdminNavbar.js";
 import Sidebar from "components/Sidebar/Sidebar.js";
-import FixedPlugin from "components/FixedPlugin/FixedPlugin.js";
-
+import React, { useState } from "react";
+import { Redirect, Route, Switch } from "react-router-dom";
 import routes from "routes.js";
-
-var ps;
-
-function Dashboard(props) {
-  const [backgroundColor, setBackgroundColor] = React.useState("black");
-  const [activeColor, setActiveColor] = React.useState("info");
-  const mainPanel = React.useRef();
-  const location = useLocation();
-  React.useEffect(() => {
-    if (navigator.platform.indexOf("Win") > -1) {
-      ps = new PerfectScrollbar(mainPanel.current);
-      document.body.classList.toggle("perfect-scrollbar-on");
-    }
-    return function cleanup() {
-      if (navigator.platform.indexOf("Win") > -1) {
-        ps.destroy();
-        document.body.classList.toggle("perfect-scrollbar-on");
+// Custom Chakra theme
+import theme from "theme/theme.js";
+import FixedPlugin from "../components/FixedPlugin/FixedPlugin";
+// Custom components
+import MainPanel from "../components/Layout/MainPanel";
+import PanelContainer from "../components/Layout/PanelContainer";
+import PanelContent from "../components/Layout/PanelContent";
+export default function Dashboard(props) {
+  const { ...rest } = props;
+  // states and functions
+  const [sidebarVariant, setSidebarVariant] = useState("transparent");
+  const [fixed, setFixed] = useState(false);
+  // ref for main panel div
+  const mainPanel = React.createRef();
+  // functions for changing the states from components
+  const getRoute = () => {
+    return window.location.pathname !== "/admin/full-screen-maps";
+  };
+  const getActiveRoute = (routes) => {
+    let activeRoute = "Default Brand Text";
+    for (let i = 0; i < routes.length; i++) {
+      if (routes[i].collapse) {
+        let collapseActiveRoute = getActiveRoute(routes[i].views);
+        if (collapseActiveRoute !== activeRoute) {
+          return collapseActiveRoute;
+        }
+      } else if (routes[i].category) {
+        let categoryActiveRoute = getActiveRoute(routes[i].views);
+        if (categoryActiveRoute !== activeRoute) {
+          return categoryActiveRoute;
+        }
+      } else {
+        if (
+          window.location.href.indexOf(routes[i].layout + routes[i].path) !== -1
+        ) {
+          return routes[i].name;
+        }
       }
-    };
-  });
-  React.useEffect(() => {
-    mainPanel.current.scrollTop = 0;
-    document.scrollingElement.scrollTop = 0;
-  }, [location]);
-  const handleActiveClick = (color) => {
-    setActiveColor(color);
+    }
+    return activeRoute;
   };
-  const handleBgClick = (color) => {
-    setBackgroundColor(color);
+  // This changes navbar state(fixed or not)
+  const getActiveNavbar = (routes) => {
+    let activeNavbar = false;
+    for (let i = 0; i < routes.length; i++) {
+      if (routes[i].category) {
+        let categoryActiveNavbar = getActiveNavbar(routes[i].views);
+        if (categoryActiveNavbar !== activeNavbar) {
+          return categoryActiveNavbar;
+        }
+      } else {
+        if (
+          window.location.href.indexOf(routes[i].layout + routes[i].path) !== -1
+        ) {
+          if (routes[i].secondaryNavbar) {
+            return routes[i].secondaryNavbar;
+          }
+        }
+      }
+    }
+    return activeNavbar;
   };
+  const getRoutes = (routes) => {
+    return routes.map((prop, key) => {
+      if (prop.collapse) {
+        return getRoutes(prop.views);
+      }
+      if (prop.category === "account") {
+        return getRoutes(prop.views);
+      }
+      if (prop.layout === "/admin") {
+        return (
+          <Route
+            path={prop.layout + prop.path}
+            component={prop.component}
+            key={key}
+          />
+        );
+      } else {
+        return null;
+      }
+    });
+  };
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  document.documentElement.dir = "ltr";
+  // Chakra Color Mode
   return (
-    <div className="wrapper">
+    <ChakraProvider theme={theme} resetCss={false}>
       <Sidebar
-        {...props}
         routes={routes}
-        bgColor={backgroundColor}
-        activeColor={activeColor}
+        logoText={"PURITY UI DASHBOARD"}
+        display="none"
+        sidebarVariant={sidebarVariant}
+        {...rest}
       />
-      <div className="main-panel" ref={mainPanel}>
-        <DemoNavbar {...props} />
-        <Switch>
-          {routes.map((prop, key) => {
-            return (
-              <Route
-                path={prop.layout + prop.path}
-                component={prop.component}
-                key={key}
-              />
-            );
-          })}
-        </Switch>
-        <Footer fluid />
-      </div>
-      <FixedPlugin
-        bgColor={backgroundColor}
-        activeColor={activeColor}
-        handleActiveClick={handleActiveClick}
-        handleBgClick={handleBgClick}
-      />
-    </div>
+      <MainPanel
+        ref={mainPanel}
+        w={{
+          base: "100%",
+          xl: "calc(100% - 275px)",
+        }}
+      >
+        <Portal>
+          <AdminNavbar
+            onOpen={onOpen}
+            logoText={"PURITY UI DASHBOARD"}
+            brandText={getActiveRoute(routes)}
+            secondary={getActiveNavbar(routes)}
+            fixed={fixed}
+            {...rest}
+          />
+        </Portal>
+        {getRoute() ? (
+          <PanelContent>
+            <PanelContainer>
+              <Switch>
+                {getRoutes(routes)}
+                <Redirect from="/admin" to="/admin/dashboard" />
+              </Switch>
+            </PanelContainer>
+          </PanelContent>
+        ) : null}
+        <Footer />
+        <Portal>
+          <FixedPlugin
+            secondary={getActiveNavbar(routes)}
+            fixed={fixed}
+            onOpen={onOpen}
+          />
+        </Portal>
+        <Configurator
+          secondary={getActiveNavbar(routes)}
+          isOpen={isOpen}
+          onClose={onClose}
+          isChecked={fixed}
+          onSwitch={(value) => {
+            setFixed(value);
+          }}
+          onOpaque={() => setSidebarVariant("opaque")}
+          onTransparent={() => setSidebarVariant("transparent")}
+        />
+      </MainPanel>
+    </ChakraProvider>
   );
 }
-
-export default Dashboard;

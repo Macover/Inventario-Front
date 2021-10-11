@@ -1,15 +1,14 @@
 /*!
 
 =========================================================
-* Paper Dashboard React - v1.3.0
+* Purity UI Dashboard - v1.0.1
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/paper-dashboard-react
+* Product Page: https://www.creative-tim.com/product/purity-ui-dashboard
 * Copyright 2021 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://github.com/creativetimofficial/purity-ui-dashboard/blob/master/LICENSE.md)
 
-* Licensed under MIT (https://github.com/creativetimofficial/paper-dashboard-react/blob/main/LICENSE.md)
-
-* Coded by Creative Tim
+* Design by Creative Tim & Coded by Simmmple
 
 =========================================================
 
@@ -18,21 +17,20 @@
 */
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
 
-import "bootstrap/dist/css/bootstrap.css";
-import "assets/scss/paper-dashboard.scss?v=1.3.0";
-import "assets/demo/demo.css";
-import "perfect-scrollbar/css/perfect-scrollbar.css";
-
+import AuthLayout from "layouts/Auth.js";
 import AdminLayout from "layouts/Admin.js";
+import RTLLayout from "layouts/RTL.js";
 
 ReactDOM.render(
-  <BrowserRouter>
+  <HashRouter>
     <Switch>
-      <Route path="/admin" render={(props) => <AdminLayout {...props} />} />
-      <Redirect to="/admin/dashboard" />
+      <Route path={`/auth`} component={AuthLayout} />
+      <Route path={`/admin`} component={AdminLayout} />
+      <Route path={`/rtl`} component={RTLLayout} />
+      <Redirect from={`/`} to="/admin/dashboard" />
     </Switch>
-  </BrowserRouter>,
+  </HashRouter>,
   document.getElementById("root")
 );

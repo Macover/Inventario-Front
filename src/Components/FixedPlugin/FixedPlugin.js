@@ -1,165 +1,50 @@
-/*!
-
-=========================================================
-* Paper Dashboard React - v1.3.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/paper-dashboard-react
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-
-* Licensed under MIT (https://github.com/creativetimofficial/paper-dashboard-react/blob/main/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
+// Chakra Imports
+import { Button, useColorModeValue } from "@chakra-ui/react";
+// Custom Icons
+import { SettingsIcon } from "components/Icons/Icons";
+import PropTypes from "prop-types";
 import React from "react";
 
-import { Button } from "reactstrap";
+export default function FixedPlugin(props) {
+  const { secondary, onChange, onSwitch, fixed, ...rest } = props;
+  // Chakra Color Mode
+  let navbarIcon = useColorModeValue("gray.500", "gray.200");
+  let bgButton = useColorModeValue("white", "gray.600");
+  let fixedDisplay = "flex";
+  if (props.secondary) {
+    fixedDisplay = "none";
+  }
 
-function FixedPlugin(props) {
-  const [classes, setClasses] = React.useState("dropdown show");
-  const handleClick = () => {
-    if (classes === "dropdown") {
-      setClasses("dropdown show");
-    } else {
-      setClasses("dropdown");
-    }
-  };
+  const settingsRef = React.useRef();
   return (
-    <div className="fixed-plugin">
-      <div className={classes}>
-        <div onClick={handleClick}>
-          <i className="fa fa-cog fa-2x" />
-        </div>
-        <ul className="dropdown-menu show">
-          <li className="header-title">SIDEBAR BACKGROUND</li>
-          <li className="adjustments-line">
-            <div className="badge-colors text-center">
-              <span
-                className={
-                  props.bgColor === "black"
-                    ? "badge filter badge-dark active"
-                    : "badge filter badge-dark"
-                }
-                data-color="black"
-                onClick={() => {
-                  props.handleBgClick("black");
-                }}
-              />
-              <span
-                className={
-                  props.bgColor === "white"
-                    ? "badge filter badge-light active"
-                    : "badge filter badge-light"
-                }
-                data-color="white"
-                onClick={() => {
-                  props.handleBgClick("white");
-                }}
-              />
-            </div>
-          </li>
-          <li className="header-title">SIDEBAR ACTIVE COLOR</li>
-          <li className="adjustments-line">
-            <div className="badge-colors text-center">
-              <span
-                className={
-                  props.activeColor === "primary"
-                    ? "badge filter badge-primary active"
-                    : "badge filter badge-primary"
-                }
-                data-color="primary"
-                onClick={() => {
-                  props.handleActiveClick("primary");
-                }}
-              />
-              <span
-                className={
-                  props.activeColor === "info"
-                    ? "badge filter badge-info active"
-                    : "badge filter badge-info"
-                }
-                data-color="info"
-                onClick={() => {
-                  props.handleActiveClick("info");
-                }}
-              />
-              <span
-                className={
-                  props.activeColor === "success"
-                    ? "badge filter badge-success active"
-                    : "badge filter badge-success"
-                }
-                data-color="success"
-                onClick={() => {
-                  props.handleActiveClick("success");
-                }}
-              />
-              <span
-                className={
-                  props.activeColor === "warning"
-                    ? "badge filter badge-warning active"
-                    : "badge filter badge-warning"
-                }
-                data-color="warning"
-                onClick={() => {
-                  props.handleActiveClick("warning");
-                }}
-              />
-              <span
-                className={
-                  props.activeColor === "danger"
-                    ? "badge filter badge-danger active"
-                    : "badge filter badge-danger"
-                }
-                data-color="danger"
-                onClick={() => {
-                  props.handleActiveClick("danger");
-                }}
-              />
-            </div>
-          </li>
-          <li className="button-container">
-            <Button
-              href="https://www.creative-tim.com/product/paper-dashboard-react?ref=pdr-fixed-plugin"
-              color="primary"
-              block
-              className="btn-round"
-            >
-              Download now
-            </Button>
-          </li>
-          <li className="button-container">
-            <Button
-              href="https://www.creative-tim.com/product/paper-dashboard-react/#/documentation/tutorial?ref=pdr-fixed-plugin"
-              color="default"
-              block
-              className="btn-round"
-              outline
-            >
-              <i className="nc-icon nc-paper" /> Documentation
-            </Button>
-          </li>
-          <li className="header-title">Want more components?</li>
-          <li className="button-container">
-            <Button
-              href="https://www.creative-tim.com/product/paper-dashboard-pro-react?ref=pdr-fixed-plugin"
-              color="danger"
-              block
-              className="btn-round"
-              target="_blank"
-            >
-              Get pro version
-            </Button>
-          </li>
-        </ul>
-      </div>
-    </div>
+    <>
+      <Button
+        h="52px"
+        w="52px"
+        onClick={props.onOpen}
+        bg={bgButton}
+        position="fixed"
+        variant="no-hover"
+        left={document.documentElement.dir === "rtl" ? "35px" : ""}
+        right={document.documentElement.dir === "rtl" ? "" : "35px"}
+        bottom="30px"
+        borderRadius="50px"
+        boxShadow="0 2px 12px 0 rgb(0 0 0 / 16%)"
+      >
+        <SettingsIcon
+          cursor="pointer"
+          ref={settingsRef}
+          color={navbarIcon}
+          w="20px"
+          h="20px"
+        />
+      </Button>
+    </>
   );
 }
 
-export default FixedPlugin;
+FixedPlugin.propTypes = {
+  fixed: PropTypes.bool,
+  onChange: PropTypes.func,
+  onSwitch: PropTypes.func,
+};

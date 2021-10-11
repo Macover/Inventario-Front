@@ -1,205 +1,164 @@
-/*!
-
-=========================================================
-* Paper Dashboard React - v1.3.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/paper-dashboard-react
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-
-* Licensed under MIT (https://github.com/creativetimofficial/paper-dashboard-react/blob/main/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-const dashboard24HoursPerformanceChart = {
-  data: (canvas) => {
-    return {
-      labels: [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-      ],
-      datasets: [
-        {
-          borderColor: "#6bd098",
-          backgroundColor: "#6bd098",
-          pointRadius: 0,
-          pointHoverRadius: 0,
-          borderWidth: 3,
-          tension: 0.4,
-          fill: true,
-          data: [300, 310, 316, 322, 330, 326, 333, 345, 338, 354],
-        },
-        {
-          borderColor: "#f17e5d",
-          backgroundColor: "#f17e5d",
-          pointRadius: 0,
-          pointHoverRadius: 0,
-          borderWidth: 3,
-          tension: 0.4,
-          fill: true,
-          data: [320, 340, 365, 360, 370, 385, 390, 384, 408, 420],
-        },
-        {
-          borderColor: "#fcc468",
-          backgroundColor: "#fcc468",
-          pointRadius: 0,
-          pointHoverRadius: 0,
-          borderWidth: 3,
-          tension: 0.4,
-          fill: true,
-          data: [370, 394, 415, 409, 425, 445, 460, 450, 478, 484],
-        },
-      ],
-    };
+export const barChartData = [
+  {
+    name: "Sales",
+    data: [330, 250, 110, 300, 490, 350, 270, 130, 425],
   },
-  options: {
-    plugins: {
-      legend: { display: false },
-      tooltip: { enabled: false },
+];
+
+export const barChartOptions = {
+  chart: {
+    toolbar: {
+      show: false,
     },
-    scales: {
-      y: {
-        ticks: {
-          color: "#9f9f9f",
-          beginAtZero: false,
-          maxTicksLimit: 5,
-        },
-        grid: {
-          drawBorder: false,
-          display: false,
-        },
+  },
+  tooltip: {
+    style: {
+      backgroundColor: "red",
+      fontSize: "12px",
+      fontFamily: undefined,
+    },
+    onDatasetHover: {
+      style: {
+        backgroundColor: "red",
+        fontSize: "12px",
+        fontFamily: undefined,
       },
-      x: {
-        barPercentage: 1.6,
-        grid: {
-          drawBorder: false,
-          display: false,
-        },
-        ticks: {
-          padding: 20,
-          color: "#9f9f9f",
-        },
+    },
+    theme: "dark",
+  },
+  xaxis: {
+    categories: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    show: false,
+    labels: {
+      show: false,
+      style: {
+        colors: "#fff",
+        fontSize: "12px",
+      },
+    },
+    axisBorder: {
+      show: false,
+    },
+    axisTicks: {
+      show: false,
+    },
+  },
+  yaxis: {
+    show: true,
+    color: "#fff",
+    labels: {
+      show: true,
+      style: {
+        colors: "#fff",
+        fontSize: "14px",
       },
     },
   },
+  grid: {
+    show: false,
+  },
+  fill: {
+    colors: "#fff",
+  },
+  dataLabels: {
+    enabled: false,
+  },
+  plotOptions: {
+    bar: {
+      borderRadius: 8,
+      columnWidth: "12px",
+    },
+  },
+  responsive: [
+    {
+      breakpoint: 768,
+      options: {
+        plotOptions: {
+          bar: {
+            borderRadius: 0,
+          },
+        },
+      },
+    },
+  ],
 };
 
-const dashboardEmailStatisticsChart = {
-  data: (canvas) => {
-    return {
-      labels: [1, 2, 3],
-      datasets: [
-        {
-          label: "Emails",
-          pointRadius: 0,
-          pointHoverRadius: 0,
-          backgroundColor: ["#e3e3e3", "#4acccd", "#fcc468", "#ef8157"],
-          borderWidth: 0,
-          data: [342, 480, 530, 120],
-        },
-      ],
-    };
+export const lineChartData = [
+  {
+    name: "Mobile apps",
+    data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
   },
-  options: {
-    plugins: {
-      legend: { display: false },
-      tooltip: { enabled: false },
-    },
-    maintainAspectRatio: false,
-    pieceLabel: {
-      render: "percentage",
-      fontColor: ["white"],
-      precision: 2,
-    },
-    scales: {
-      y: {
-        ticks: {
-          display: false,
-        },
-        grid: {
-          drawBorder: false,
-          display: false,
-        },
-      },
-      x: {
-        barPercentage: 1.6,
-        grid: {
-          drawBorder: false,
-          display: false,
-        },
-        ticks: {
-          display: false,
-        },
-      },
-    },
+  {
+    name: "Websites",
+    data: [30, 90, 40, 140, 290, 290, 340, 230, 400],
   },
-};
+];
 
-const dashboardNASDAQChart = {
-  data: (canvas) => {
-    return {
-      labels: [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
-      ],
-      datasets: [
-        {
-          data: [0, 19, 15, 20, 30, 40, 40, 50, 25, 30, 50, 70],
-          fill: false,
-          borderColor: "#fbc658",
-          backgroundColor: "transparent",
-          pointBorderColor: "#fbc658",
-          pointRadius: 4,
-          pointHoverRadius: 4,
-          pointBorderWidth: 8,
-          tension: 0.4,
-        },
-        {
-          data: [0, 5, 10, 12, 20, 27, 30, 34, 42, 45, 55, 63],
-          fill: false,
-          borderColor: "#51CACF",
-          backgroundColor: "transparent",
-          pointBorderColor: "#51CACF",
-          pointRadius: 4,
-          pointHoverRadius: 4,
-          pointBorderWidth: 8,
-          tension: 0.4,
-        },
-      ],
-    };
-  },
-  options: {
-    plugins: {
-      legend: { display: false },
+export const lineChartOptions = {
+  chart: {
+    toolbar: {
+      show: false,
     },
   },
-};
-
-module.exports = {
-  dashboard24HoursPerformanceChart,
-  dashboardEmailStatisticsChart,
-  dashboardNASDAQChart,
+  tooltip: {
+    theme: "dark",
+  },
+  dataLabels: {
+    enabled: false,
+  },
+  stroke: {
+    curve: "smooth",
+  },
+  xaxis: {
+    type: "datetime",
+    categories: [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ],
+    labels: {
+      style: {
+        colors: "#c8cfca",
+        fontSize: "12px",
+      },
+    },
+  },
+  yaxis: {
+    labels: {
+      style: {
+        colors: "#c8cfca",
+        fontSize: "12px",
+      },
+    },
+  },
+  legend: {
+    show: false,
+  },
+  grid: {
+    strokeDashArray: 5,
+  },
+  fill: {
+    type: "gradient",
+    gradient: {
+      shade: "light",
+      type: "vertical",
+      shadeIntensity: 0.5,
+      gradientToColors: undefined, // optional, if not defined - uses the shades of same color in series
+      inverseColors: true,
+      opacityFrom: 0.8,
+      opacityTo: 0,
+      stops: [],
+    },
+    colors: ["#4FD1C5", "#2D3748"],
+  },
+  colors: ["#4FD1C5", "#2D3748"],
 };

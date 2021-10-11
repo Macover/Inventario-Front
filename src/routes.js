@@ -1,87 +1,88 @@
-/*!
+// import
+import Dashboard from "views/Dashboard/Dashboard.js";
+import Tables from "views/Dashboard/Tables.js";
+import Billing from "views/Dashboard/Billing.js";
+import RTLPage from "views/RTL/RTLPage.js";
+import Profile from "views/Dashboard/Profile.js";
+import SignIn from "views/Pages/SignIn.js";
+import SignUp from "views/Pages/SignUp.js";
 
-=========================================================
-* Paper Dashboard React - v1.3.0
-=========================================================
+import {
+  HomeIcon,
+  StatsIcon,
+  CreditIcon,
+  PersonIcon,
+  DocumentIcon,
+  RocketIcon,
+  SupportIcon,
+} from "components/Icons/Icons";
 
-* Product Page: https://www.creative-tim.com/product/paper-dashboard-react
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-
-* Licensed under MIT (https://github.com/creativetimofficial/paper-dashboard-react/blob/main/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-import Dashboard from "views/Dashboard.js";
-import Notifications from "views/Notifications.js";
-import Icons from "views/Icons.js";
-import Typography from "views/Typography.js";
-import TableList from "views/Tables.js";
-import Maps from "views/Map.js";
-import UserPage from "views/User.js";
-import UpgradeToPro from "views/Upgrade.js";
-
-var routes = [
+var dashRoutes = [
   {
     path: "/dashboard",
     name: "Dashboard",
-    icon: "nc-icon nc-bank",
+    rtlName: "لوحة القيادة",
+    icon: <HomeIcon color="inherit" />,
     component: Dashboard,
     layout: "/admin",
   },
   {
-    path: "/icons",
-    name: "Icons",
-    icon: "nc-icon nc-diamond",
-    component: Icons,
-    layout: "/admin",
-  },
-  {
-    path: "/maps",
-    name: "Maps",
-    icon: "nc-icon nc-pin-3",
-    component: Maps,
-    layout: "/admin",
-  },
-  {
-    path: "/notifications",
-    name: "Notifications",
-    icon: "nc-icon nc-bell-55",
-    component: Notifications,
-    layout: "/admin",
-  },
-  {
-    path: "/user-page",
-    name: "User Profile",
-    icon: "nc-icon nc-single-02",
-    component: UserPage,
-    layout: "/admin",
-  },
-  {
     path: "/tables",
-    name: "Table List",
-    icon: "nc-icon nc-tile-56",
-    component: TableList,
+    name: "Tables",
+    rtlName: "لوحة القيادة",
+    icon: <StatsIcon color="inherit" />,
+    component: Tables,
     layout: "/admin",
   },
   {
-    path: "/typography",
-    name: "Typography",
-    icon: "nc-icon nc-caps-small",
-    component: Typography,
+    path: "/billing",
+    name: "Billing",
+    rtlName: "لوحة القيادة",
+    icon: <CreditIcon color="inherit" />,
+    component: Billing,
     layout: "/admin",
   },
   {
-    pro: true,
-    path: "/upgrade",
-    name: "Upgrade to PRO",
-    icon: "nc-icon nc-spaceship",
-    component: UpgradeToPro,
-    layout: "/admin",
+    path: "/rtl-support-page",
+    name: "RTL",
+    rtlName: "آرتيإل",
+    icon: <SupportIcon color="inherit" />,
+    component: RTLPage,
+    layout: "/rtl",
+  },
+  {
+    name: "ACCOUNT PAGES",
+    category: "account",
+    rtlName: "صفحات",
+    state: "pageCollapse",
+    views: [
+      {
+        path: "/profile",
+        name: "Profile",
+        rtlName: "لوحة القيادة",
+        icon: <PersonIcon color="inherit" />,
+        secondaryNavbar: true,
+        component: Profile,
+        layout: "/admin",
+      },
+      {
+        path: "/signin",
+        name: "Sign In",
+        rtlName: "لوحة القيادة",
+        icon: <DocumentIcon color="inherit" />,
+        component: SignIn,
+        layout: "/auth",
+      },
+      {
+        path: "/signup",
+        name: "Sign Up",
+        rtlName: "لوحة القيادة",
+        icon: <RocketIcon color="inherit" />,
+        secondaryNavbar: true,
+        component: SignUp,
+        layout: "/auth",
+      },
+    ],
   },
 ];
-export default routes;
+export default dashRoutes;
