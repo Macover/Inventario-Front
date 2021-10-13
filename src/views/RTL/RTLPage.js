@@ -84,7 +84,7 @@ export default function Dashboard() {
                   fontWeight="bold"
                   pb=".1rem"
                 >
-                  أموال اليوم
+                  LALALA
                 </StatLabel>
                 <Flex>
                   <StatNumber fontSize="lg" color={textColor}>

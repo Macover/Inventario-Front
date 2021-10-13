@@ -113,7 +113,7 @@ export default function Dashboard(props) {
         <Portal>
           <AdminNavbar
             onOpen={onOpen}
-            logoText={"PURITY UI DASHBOARD"}
+            logoText={"SISTEMA PARA EL CONTROL DEL MOBILIARIO EMPRESARIAL"}
             brandText={getActiveRoute(routes)}
             secondary={getActiveNavbar(routes)}
             fixed={fixed}

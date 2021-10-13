@@ -7,6 +7,9 @@ import Profile from "views/Dashboard/Profile.js";
 import SignIn from "views/Pages/SignIn.js";
 import SignUp from "views/Pages/SignUp.js";
 
+import TablaUsuario from "views/Dashboard/TablaUsuario.js"
+import TablaItem from "views/Dashboard/TablaItems.js"
+
 import {
   HomeIcon,
   StatsIcon,
@@ -83,6 +86,22 @@ var dashRoutes = [
         layout: "/auth",
       },
     ],
+  },
+  { 
+    path: "/Usuarios", 
+    name: "Usuarios", 
+    rtlName: "nombre de rtl", 
+    icon: <PersonIcon color="inherit" />, 
+    component: TablaUsuario,
+    layout: "/admin" 
+  },
+  { 
+    path: "/Items", 
+    name: "Items", 
+    rtlName: "nombre de rtl", 
+    icon: <RocketIcon color="inherit" />, 
+    component: TablaItem,
+    layout: "/admin" 
   },
 ];
 export default dashRoutes;
