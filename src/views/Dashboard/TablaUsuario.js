@@ -22,7 +22,7 @@ import CardHeader from "components/Card/CardHeader.js";
 import CardBody from "components/Card/CardBody.js";
 
 import TablesRowUsuario from "components/Tables/TablesRowUsuario.js";
-;
+
 
 function GetUsuariosTable() {
   const textColor = useColorModeValue("gray.700", "white");
@@ -67,6 +67,10 @@ function GetUsuariosTable() {
     }
   }
 
+  const clickBoton = () =>{
+    console.log("le diste click al boton")
+  }
+
   return (
     <Flex direction="column" pt={{ base: "120px", md: "75px" }}>
 
@@ -78,6 +82,7 @@ function GetUsuariosTable() {
             </Text>
             
             <Button
+              onClick={clickBoton}
               colorScheme="teal"
               borderColor="teal.300"
               color="teal.300"
@@ -111,9 +116,9 @@ function GetUsuariosTable() {
               {validaUsuarios()}
             </Tbody>
           </Table>
+          
         </CardBody>
       </Card>
-
     </Flex>
   );
 }

@@ -28,8 +28,9 @@ function TablesRowItems(props) {
 
   return (
     <Tr>
-      <Td minWidth={{ sm: "140px" }} pl="0px">
-        <Flex justifyContent="center" align="center" py=".8rem" minWidth="100%" flexWrap="nowrap">
+      <Td minWidth={{ sm: "250px" }} pl="0px">
+        <Flex align="center" py=".8rem" minWidth="100%" flexWrap="nowrap">
+          <Avatar src="" w="50px" borderRadius="12px" me="18px" />
           <Flex direction="column">
             <Text
               fontSize="md"
@@ -38,7 +39,7 @@ function TablesRowItems(props) {
               minWidth="100%"
             >
               {idItem}
-            </Text>
+            </Text>         
           </Flex>
         </Flex>
       </Td>

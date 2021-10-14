@@ -24,6 +24,7 @@ import CardHeader from "components/Card/CardHeader.js";
 import CardBody from "components/Card/CardBody.js";
 
 import TablesRowItems from 'components/Tables/TablesRowItems.js';
+import AgregarItem from 'components/VentanaEmergente/AgregarItem.js';
 
 function GetItemsTable() {
 
@@ -106,7 +107,7 @@ function GetItemsTable() {
           </Table>
         </CardBody>
       </Card>
-
+      <AgregarItem/>
     </Flex>
   );
 }

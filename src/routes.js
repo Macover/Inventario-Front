@@ -9,6 +9,7 @@ import SignUp from "views/Pages/SignUp.js";
 
 import TablaUsuario from "views/Dashboard/TablaUsuario.js"
 import TablaItem from "views/Dashboard/TablaItems.js"
+import TablaArea from "views/Dashboard/TablaAreas.js"
 
 import {
   HomeIcon,
@@ -103,5 +104,13 @@ var dashRoutes = [
     component: TablaItem,
     layout: "/admin" 
   },
+  // { 
+  //   path: "/Areas", 
+  //   name: "Areas", 
+  //   rtlName: "nombre de rtl", 
+  //   icon: <GlobeIcon color="inherit" />, 
+  //   component: TablaItem,
+  //   layout: "/admin" 
+  // },
 ];
 export default dashRoutes;
