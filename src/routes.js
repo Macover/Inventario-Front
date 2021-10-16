@@ -18,6 +18,7 @@ import {
   PersonIcon,
   DocumentIcon,
   RocketIcon,
+  GlobeIcon,
   SupportIcon,
 } from "components/Icons/Icons";
 
@@ -88,29 +89,38 @@ var dashRoutes = [
       },
     ],
   },
-  { 
-    path: "/Usuarios", 
-    name: "Usuarios", 
-    rtlName: "nombre de rtl", 
-    icon: <PersonIcon color="inherit" />, 
-    component: TablaUsuario,
-    layout: "/admin" 
+  {
+    name: "VISTAS ADMINISTRADOR",
+    category: "account",
+    rtlName: "nombre rtl",
+    state: "pageCollapse",
+    views: [
+      { 
+        path: "/Usuarios", 
+        name: "Usuarios", 
+        rtlName: "nombre de rtl", 
+        icon: <PersonIcon color="inherit" />, 
+        component: TablaUsuario,
+        layout: "/admin" 
+      },
+      { 
+        path: "/Items", 
+        name: "Items", 
+        rtlName: "nombre de rtl", 
+        icon: <RocketIcon color="inherit" />, 
+        component: TablaItem,
+        layout: "/admin" 
+      },
+      { 
+        path: "/Areas", 
+        name: "Areas", 
+        rtlName: "nombre de rtl", 
+        icon: <GlobeIcon color="inherit" />, 
+        component: TablaArea,
+        layout: "/admin" 
+      },
+    ],
   },
-  { 
-    path: "/Items", 
-    name: "Items", 
-    rtlName: "nombre de rtl", 
-    icon: <RocketIcon color="inherit" />, 
-    component: TablaItem,
-    layout: "/admin" 
-  },
-  // { 
-  //   path: "/Areas", 
-  //   name: "Areas", 
-  //   rtlName: "nombre de rtl", 
-  //   icon: <GlobeIcon color="inherit" />, 
-  //   component: TablaItem,
-  //   layout: "/admin" 
-  // },
+  
 ];
 export default dashRoutes;

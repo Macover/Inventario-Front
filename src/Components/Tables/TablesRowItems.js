@@ -28,15 +28,15 @@ function TablesRowItems(props) {
 
   return (
     <Tr>
-      <Td minWidth={{ sm: "250px" }} pl="0px">
+      <Td minWidth={{ sm: "100px" }} pl="0px">
         <Flex align="center" py=".8rem" minWidth="100%" flexWrap="nowrap">
-          <Avatar src="" w="50px" borderRadius="12px" me="18px" />
-          <Flex direction="column">
+          <Flex direction="column" alignItems="center">
             <Text
               fontSize="md"
               color={textColor}
               fontWeight="bold"
               minWidth="100%"
+              textAlign="center"
             >
               {idItem}
             </Text>         
