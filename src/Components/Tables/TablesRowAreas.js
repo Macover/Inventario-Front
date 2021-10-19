@@ -27,19 +27,20 @@ import { useDisclosure } from "@chakra-ui/hooks"
 import { FormControl, FormLabel } from "@chakra-ui/form-control"
 import { Input, InputGroup, InputLeftAddon } from "@chakra-ui/input"
 
+import { update } from "lodash";
+import { idText } from "typescript";
+
 
 function TablesRowAreas(props) {
 
   const { isOpen, onOpen, onClose } = useDisclosure()
   const initialRef = React.useRef()
 
-  const { isOpenD, onOpenD, onCloseD } = useDisclosure()
-  const initialRefD = React.useRef()
-
   const {
     idArea,
     nombreArea
   } = props;
+
   const textColor = useColorModeValue("gray.700", "white");
   const bgStatus = useColorModeValue("gray.400", "#1a202c");
   const colorStatus = useColorModeValue("white", "gray.400");
@@ -73,8 +74,12 @@ function TablesRowAreas(props) {
           align="flex-start"
           p={{ md: "24px" }}
         >
+
+          {/* delete button */}
+
           <Button
-            onClick={onOpenD}
+            onClick={onOpen}
+            key="xs"
             p="0px"
             bg="transparent"
             mb={{ sm: "10px", md: "0px" }}
@@ -87,39 +92,38 @@ function TablesRowAreas(props) {
               </Text>
             </Flex>
           </Button>
-          <Modal
-            initialFocusRef={initialRefD}
-            isOpen={isOpenD}
-            onClose={onCloseD}
-          >
+
+          <Modal isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />
-            <form>
-              <ModalContent>
-                <ModalHeader>Advertencia</ModalHeader>
-                <ModalCloseButton />
-                <ModalBody pb={6}>
-                  seguro
-                </ModalBody>
-                <ModalFooter>
-                  <Button
-                    type="submit"
-                    colorScheme="teal"
-                    borderColor="teal.300"
-                    color="teal.300"
-                    variant="ghost"
-                    mr={3}>
-                    Eliminar
-                  </Button>
-                  <Button variant="ghost" onClick={onCloseD}>Cancelar</Button>
-                </ModalFooter>
-              </ModalContent>
-            </form>
+            <ModalContent>
+              <ModalHeader>¿Esta seguro de eliminar el area?</ModalHeader>
+              <ModalCloseButton />
+              <ModalBody>
+                <FormControl>
+                  <FormLabel>Si hace click en eliminar, no podra deshacer los cambios. ¿Esta seguro de eliminar el area <b>{nombreArea}</b>?</FormLabel>
+                </FormControl>
+              </ModalBody>
+              <ModalFooter>
+                <Button
+                  type="submit"
+                  colorScheme="red"
+                  borderColor="red.300"
+                  color="red.300"
+                  variant="ghost"
+                  mr={3}>
+                  Eliminar
+                </Button>
+                <Button variant="ghost" onClick={onClose}>Cancelar</Button>
+              </ModalFooter>
+            </ModalContent>
           </Modal>
 
 
+          {/* update button */}
 
           <Button
             onClick={onOpen}
+            key="sm"
             p="0px"
             bg="transparent">
             <Flex color={textColor} cursor="pointer" align="center" p="12px">
@@ -129,10 +133,11 @@ function TablesRowAreas(props) {
               </Text>
             </Flex>
           </Button>
+
           <Modal
-            initialFocusRef={initialRef}
             isOpen={isOpen}
             onClose={onClose}
+            initialFocusRef={initialRef}
           >
             <ModalOverlay />
             <form>
