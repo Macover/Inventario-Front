@@ -92,7 +92,6 @@ function TablesRowAreas(props) {
               </Text>
             </Flex>
           </Button>
-
           <Modal isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />
             <ModalContent>
@@ -133,7 +132,6 @@ function TablesRowAreas(props) {
               </Text>
             </Flex>
           </Button>
-
           <Modal
             isOpen={isOpen}
             onClose={onClose}
@@ -150,7 +148,7 @@ function TablesRowAreas(props) {
                     <Input
                       ref={initialRef}
                       focusBorderColor="teal.300"
-                      value={nombreArea}
+                      defaultValue={nombreArea}                
                     />
                   </FormControl>
                 </ModalBody>
@@ -169,6 +167,7 @@ function TablesRowAreas(props) {
               </ModalContent>
             </form>
           </Modal>
+
         </Flex>
       </Td>
     </Tr>

@@ -52,7 +52,7 @@ function TablesRowItems(props) {
       </Td>
       <Td>
         <Text fontSize="md" color="gray.500" fontWeight="bold" pb=".5rem">
-          {numSerie}
+          {(numSerie == "null" ? 'sin numero de serie' : numSerie)}
         </Text>
       </Td>
       <Td>

@@ -3,6 +3,12 @@ import ItemService from '../../services/ItemService.js';
 import CategoriaItemService from '../../services/CategoriaItemService.js';
 import { Dropdown } from 'primereact/dropdown';
 import ReactDOM from "react-dom";
+import {
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
+} from "@chakra-ui/react"
 
 
 import { useForm } from "react-hook-form";
@@ -51,14 +57,19 @@ import TablesRowItems from 'components/Tables/TablesRowItems.js';
 
 function GetItemsTable() {
 
-  const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const { register, formState: { errors }, handleSubmit, reset } = useForm();
+  const onSubmit = (data) => {
+    console.log(data);
+    reset();
+  }
+
+  const setItem = (item) => {
+    itemService.getAllItems().then(data => setItems(data));
+  }
 
   const { isOpen, onOpen, onClose } = useDisclosure()
   const initialRef = React.useRef()
   const textColor = useColorModeValue("gray.700", "white");
-
-  const [selectedItem, setSelectedItem] = useState(null);
 
   const [items, setItems] = useState({});
   const itemService = new ItemService();
@@ -66,9 +77,7 @@ function GetItemsTable() {
   const getAllItems = () => {
     itemService.getAllItems().then(data => setItems(data));
   }
-  // useEffect(() => {
 
-  // }, []);
 
   console.log("items", items);
 
@@ -95,7 +104,9 @@ function GetItemsTable() {
     } else {
       return (
         categoriasItems.map(categoriaItem => (
-          <option>{categoriaItem.nombreCategoria}</option>
+          <option defaultValue={categoriaItem.idCategoria} {...register("idCategoria")}>
+            {categoriaItem.nombreCategoria}
+          </option>
         ))
       )
     }
@@ -136,7 +147,10 @@ function GetItemsTable() {
             </Text>
 
             <Button
-              onClick={onOpen}
+              onClick={() => {
+                onOpen();
+                reset();
+              }}
               colorScheme="teal"
               borderColor="teal.300"
               color="teal.300"
@@ -159,36 +173,52 @@ function GetItemsTable() {
                     <FormControl>
                       <FormLabel>Nombre del item</FormLabel>
                       <Input
-                      {...register("firstName")}
-                      ref={initialRef}                     
-                      focusBorderColor="teal.300" 
-                      placeholder="Nombre del item" />
+                        type="hidden"
+                        focusBorderColor="teal.300"
+                      />
+                      <input placeholder="Nombre del item" className="chakra-input css-1sp0hs5" {...register("nombreItem", { required: true })} />
+                      {errors.nombreItem?.type === 'required' &&
+                        <Alert borderRadius="10px" margin="10px 0px" status="warning">
+                          <AlertIcon />
+                          <AlertTitle>El nombre del item es requerido</AlertTitle>
+                        </Alert>
+                      }
                     </FormControl>
                     <FormControl>
                       <FormLabel>Numero de serie</FormLabel>
                       <InputGroup>
                         <InputLeftAddon children="NO." />
-                        <Input
-                        
-                        focusBorderColor="teal.300"  
-                        type="tel" 
-                        placeholder="Serie" />
+                        <input placeholder="serie" className="chakra-input css-1sp0hs5" {...register("numSerie", { required: true })}/>                                                
                       </InputGroup>
+                      {errors.numSerie?.type === 'required' &&
+                          <Alert borderRadius="10px" margin="10px 0px" status="warning">
+                            <AlertIcon />
+                            <AlertTitle>El numero de serie es requerido</AlertTitle>
+                          </Alert>
+                        }
                     </FormControl>
                     <FormControl id="country">
                       <FormLabel>Selecciona una categoria</FormLabel>
                       <Select
-                      focusBorderColor="teal.300" 
-                      placeholder="Seleccion categoria">
+                        hidden="true"
+                        focusBorderColor="teal.300"
+                      ></Select>
+                      <select
+                        class="chakra-select css-iwbr4y">
+                        <option>Selecciona una categoria</option>
                         {validaCategoriaItem()}
-                      </Select>
+                      </select>                      
                     </FormControl>
                     <FormControl>
                       <FormLabel>Descripcion</FormLabel>
-                      <Input
-                      
-                      focusBorderColor="teal.300"
-                      placeholder="Descripcion del item" />
+                      <input placeholder="Descripcion del item" className="chakra-input css-1sp0hs5" {...register("descripcion", { required: true })}/>
+                      {errors.descripcion?.type === 'required' &&
+                          <Alert borderRadius="10px" margin="10px 0px" status="warning">
+                            <AlertIcon />
+                            <AlertTitle>La descripcion es requerida</AlertTitle>
+                          </Alert>
+                        }
+                      <input type="hidden" value="2021-07-11" {...register("createdAt")} />                      
                     </FormControl>
                   </ModalBody>
                   <ModalFooter>

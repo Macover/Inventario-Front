@@ -7,9 +7,14 @@ import Profile from "views/Dashboard/Profile.js";
 import SignIn from "views/Pages/SignIn.js";
 import SignUp from "views/Pages/SignUp.js";
 
+// imports administrador
 import TablaUsuario from "views/Dashboard/TablaUsuario.js"
 import TablaItem from "views/Dashboard/TablaItems.js"
 import TablaArea from "views/Dashboard/TablaAreas.js"
+
+// imports usuario
+import InicioU from "views/Dashboard Usuario/InicioU.js";
+import CategoriaComputadoras from "views/Dashboard Usuario/CategoriaComputadoras.js";
 
 import {
   HomeIcon,
@@ -117,6 +122,30 @@ var dashRoutes = [
         rtlName: "nombre de rtl", 
         icon: <GlobeIcon color="inherit" />, 
         component: TablaArea,
+        layout: "/admin" 
+      },
+    ],
+  },
+  {
+    name: "VISTAS USUARIO",
+    category: "account",
+    rtlName: "nombre rtl",
+    state: "pageCollapse",
+    views: [
+      { 
+        path: "/Inicio", 
+        name: "Inicio", 
+        rtlName: "nombre de rtl", 
+        icon: <HomeIcon color="inherit" />, 
+        component: InicioU,
+        layout: "/admin" 
+      },
+      { 
+        path: "/Computadoras", 
+        name: "Computadoras", 
+        rtlName: "nombre de rtl", 
+        icon: <HomeIcon color="inherit" />, 
+        component: CategoriaComputadoras,
         layout: "/admin" 
       },
     ],
