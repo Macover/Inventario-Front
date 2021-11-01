@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import ItemService from '../../services/ItemService.js';
 import CategoriaItemService from '../../services/CategoriaItemService.js';
-import { Dropdown } from 'primereact/dropdown';
-import ReactDOM from "react-dom";
+
 import {
   Alert,
   AlertIcon,
   AlertTitle,
-  AlertDescription,
 } from "@chakra-ui/react"
 
 

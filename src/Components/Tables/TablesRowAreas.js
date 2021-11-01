@@ -1,8 +1,6 @@
 import React from "react";
 
 import {
-  Avatar,
-  Badge,
   Button,
   Flex,
   Td,
@@ -25,11 +23,7 @@ import {
 import { useDisclosure } from "@chakra-ui/hooks"
 
 import { FormControl, FormLabel } from "@chakra-ui/form-control"
-import { Input, InputGroup, InputLeftAddon } from "@chakra-ui/input"
-
-import { update } from "lodash";
-import { idText } from "typescript";
-
+import { Input } from "@chakra-ui/input"
 
 function TablesRowAreas(props) {
 

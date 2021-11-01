@@ -21,9 +21,8 @@ import { PhoneIcon } from '@chakra-ui/icons';
 import { Grid, GridItem } from "@chakra-ui/react"
 import { Box } from '@chakra-ui/layout';
 
-import { Link } from 'react-router-dom';
-// import { ReachLink,Link } from "@chakra-ui/react"
-import { ExternalLinkIcon } from "@chakra-ui/icons"
+import { Link } from "@chakra-ui/react"
+import { Link as ReachLink } from "@reach/router"
 
 // Custom components
 import Card from "components/Card/Card.js";
@@ -55,8 +54,8 @@ function InicioU() {
           >                       
             <Box w="100%" h="100%">           
             <Link
-              // as={ReachLink} 
-              href="https://demos.creative-tim.com/docs-purity-ui-dashboard/docs/navigation/link"
+              as={ReachLink} 
+              to="/#/admin/Computadoras"
               isExternal
               w="100%"            
               h="100%"

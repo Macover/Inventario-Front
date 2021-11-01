@@ -15,6 +15,7 @@ import TablaArea from "views/Dashboard/TablaAreas.js"
 // imports usuario
 import InicioU from "views/Dashboard Usuario/InicioU.js";
 import CategoriaComputadoras from "views/Dashboard Usuario/CategoriaComputadoras.js";
+import HistorialSolicitudesUsuario from "views/Dashboard Usuario/HistorialSolicitudesUsuario.js";
 
 import {
   HomeIcon,
@@ -146,6 +147,14 @@ var dashRoutes = [
         rtlName: "nombre de rtl", 
         icon: <HomeIcon color="inherit" />, 
         component: CategoriaComputadoras,
+        layout: "/admin" 
+      },
+      { 
+        path: "/HistorialSolicitudes", 
+        name: "Historial Solicitudes", 
+        rtlName: "nombre de rtl", 
+        icon: <HomeIcon color="inherit" />, 
+        component: HistorialSolicitudesUsuario,
         layout: "/admin" 
       },
     ],
