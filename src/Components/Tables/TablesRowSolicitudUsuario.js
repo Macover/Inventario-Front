@@ -46,7 +46,8 @@ function TablesRowSolicitudUsuario(props) {
   const { register, formState: { errors }, handleSubmit, reset } = useForm();
 
   const onSubmit = (data) => {
-
+    Object.assign(data, selectedFile)
+    delete Object.assign(data, {['url_img']: data['objectURL'] })['objectURL'];
     console.log("reporte_usuario", data);
     console.log("imagen: ", selectedFile);
     reset();
@@ -220,7 +221,7 @@ function TablesRowSolicitudUsuario(props) {
                     onUpload = {onUpload()}
                     uploadHandler={onBasicUpload}                   
                     />
-                    <input type="hidden" defaultValue={selectedFile} {...register("img")}/>
+                    
                     {/* <input 
                         type="file" 
                         style={botonSubirArchivo} 
