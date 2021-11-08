@@ -35,24 +35,29 @@ function TablesRowAreas(props) {
     nombreArea
   } = props;
 
+  const { 
+    isOpen: isOpenDelete, 
+    onOpen: onOpenDelete, 
+    onClose: onCloseDelete 
+  } = useDisclosure()
+
   const textColor = useColorModeValue("gray.700", "white");
   const bgStatus = useColorModeValue("gray.400", "#1a202c");
   const colorStatus = useColorModeValue("white", "gray.400");
 
   return (
     <Tr>
-      <Td minWidth={{ sm: "250px" }} pl="0px">
+      <Td minWidth={{ sm: "100px" }} pl="0px">
         <Flex align="center" py=".8rem" minWidth="100%" flexWrap="nowrap">
-          <Flex direction="column">
-            <Text
+          <Text
+              textAlign="center"
               fontSize="md"
-              color={textColor}
+              color={textColor}              
               fontWeight="bold"
               minWidth="100%"
             >
               {idArea}
             </Text>
-          </Flex>
         </Flex>
       </Td>
       <Td>
@@ -66,13 +71,14 @@ function TablesRowAreas(props) {
         <Flex
           direction={{ sm: "column", md: "row" }}
           align="flex-start"
+          justifyContent="center"
           p={{ md: "24px" }}
         >
 
           {/* delete button */}
 
           <Button
-            onClick={onOpen}
+            onClick={onOpenDelete}
             key="xs"
             p="0px"
             bg="transparent"
@@ -86,7 +92,12 @@ function TablesRowAreas(props) {
               </Text>
             </Flex>
           </Button>
-          <Modal isOpen={isOpen} onClose={onClose}>
+          <Modal 
+          isOpen={isOpenDelete}         
+          onClose={onCloseDelete}
+          closeOnOverlayClick={false}
+          isCentered          
+          motionPreset="scale">
             <ModalOverlay />
             <ModalContent>
               <ModalHeader>¿Esta seguro de eliminar el area?</ModalHeader>
@@ -106,7 +117,7 @@ function TablesRowAreas(props) {
                   mr={3}>
                   Eliminar
                 </Button>
-                <Button variant="ghost" onClick={onClose}>Cancelar</Button>
+                <Button variant="ghost" onClick={onCloseDelete}>Cancelar</Button>
               </ModalFooter>
             </ModalContent>
           </Modal>
@@ -129,7 +140,10 @@ function TablesRowAreas(props) {
           <Modal
             isOpen={isOpen}
             onClose={onClose}
+            closeOnOverlayClick={false}
+            isCentered
             initialFocusRef={initialRef}
+            motionPreset="scale"
           >
             <ModalOverlay />
             <form>

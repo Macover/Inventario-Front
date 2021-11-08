@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import { Toast } from 'primereact/toast';
 import { FileUpload } from 'primereact/fileupload';
-import { useRef } from "react";
 
 import {
   Button,
@@ -67,27 +65,14 @@ function TablesRowSolicitudUsuario(props) {
   //   }))
   // }
 
-  const onUpload = () =>{
-    console.log("se cargo el archivo");    
-  }
 
-  const onBasicUpload = ({files}) => {
-    console.log("ah entrado");
+  const onBasicUpload = ({files}) => {    
     const [file] = files;
     setSelectedFile(file);
     
   }
 
   const [selectedFile, setSelectedFile] = useState(null);
-
-
-
-  const botonSubirArchivo = {
-    fontFamily: 'calibri',
-    border: '1px dashed #BBB',
-    backgroundColor: '#DDD',
-    overFlow: 'hidden'
-  }
 
   const {
     numeroSolicitud,
@@ -168,7 +153,6 @@ function TablesRowSolicitudUsuario(props) {
           <Modal
             isOpen={isOpen}
             onClose={onClose}
-
           >
             <ModalOverlay />
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -217,8 +201,7 @@ function TablesRowSolicitudUsuario(props) {
                     name="archivo"                     
                     accept=".jpg" 
                     chooseOptions={chooseOptions}
-                    maxFileSize={1000000}                    
-                    onUpload = {onUpload()}
+                    maxFileSize={1000000}                                        
                     uploadHandler={onBasicUpload}                   
                     />
                     

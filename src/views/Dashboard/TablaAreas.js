@@ -138,8 +138,9 @@ function GetAreasAreas() {
           <Table variant="simple" color={textColor}>
             <Thead>
               <Tr my=".8rem" pl="0px" color="gray.400">
-                <Th color="gray.400">Id Area</Th>
-                <Th color="gray.400">Nombre area</Th>            
+                <Th textAlign="center" color="gray.400">Id Area</Th>
+                <Th color="gray.400">Nombre area</Th>
+                <Th textAlign="center" color="gray.400">Accion</Th>            
                 <Th></Th>
               </Tr>
             </Thead>

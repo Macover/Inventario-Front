@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import HistorialSolicitudesService from 'services/HistorialSolicitudesService.js';
+import React, { useState, useEffect } from 'react';
+import HistorialSolicitudesService from '../../services/HistorialSolicitudesService.js';
+
 // Chakra imports
 import {
   Flex,
@@ -24,17 +25,18 @@ import { SearchBarCustom } from 'components/Navbars/SearchBar/SearchBarCustom';
 function HistorialSolicitudesUsuario() {
   const textColor = useColorModeValue("gray.700", "white");
 
-  const [historialSolicitudes, setHistorialSolicitudes] = useState({});
-  const historialService = new HistorialSolicitudesService();
+  const [historialSolicitudes, setHistorialS] = useState({});
+  const historialSolicitudesService = new HistorialSolicitudesService();
 
-  const getAllHistorial = () => {    
-    historialService.getAllHistorialSolicitudes().then(data => setHistorialSolicitudes(data));    
+  const getAllHistorialSolicitudes = () =>{
+      historialSolicitudesService.getAllHistorialSolicitudes().then(data => setHistorialS(data));
   }
-  useEffect(() => {
-    getAllHistorial();
-  }, []);
 
-  console.log("historial", historialSolicitudes);
+  useEffect(()=>{
+    getAllHistorialSolicitudes();
+  },[]);
+
+  console.log("historialSolicitudes", historialSolicitudes);
 
   const validaHistorial = () => {
     if (Object.entries(historialSolicitudes).length === 0) {

@@ -17,6 +17,10 @@ import InicioU from "views/Dashboard Usuario/InicioU.js";
 import CategoriaComputadoras from "views/Dashboard Usuario/CategoriaComputadoras.js";
 import HistorialSolicitudesUsuario from "views/Dashboard Usuario/HistorialSolicitudesUsuario.js";
 
+//imports operador.
+import InicioOperador from "views/Dashboard Operador/InicioOperador.js";
+import SolicitudesPendientes from "views/Dashboard Operador/SolicitudesPendientes.js";
+
 import {
   HomeIcon,
   StatsIcon,
@@ -155,6 +159,30 @@ var dashRoutes = [
         rtlName: "nombre de rtl", 
         icon: <HomeIcon color="inherit" />, 
         component: HistorialSolicitudesUsuario,
+        layout: "/admin" 
+      },
+    ],
+  },
+  {
+    name: "VISTAS OPERADOR",
+    category: "account",
+    rtlName: "nombre rtl",
+    state: "pageCollapse",
+    views: [
+      { 
+        path: "/InicioOperador", 
+        name: "Inicio Operador", 
+        rtlName: "nombre de rtl", 
+        icon: <HomeIcon color="inherit" />, 
+        component: InicioOperador,
+        layout: "/admin" 
+      },
+      { 
+        path: "/solicitudesPendientes", 
+        name: "Solicitudes pendientes", 
+        rtlName: "nombre de rtl", 
+        icon: <HomeIcon color="inherit" />, 
+        component: SolicitudesPendientes,
         layout: "/admin" 
       },
     ],
