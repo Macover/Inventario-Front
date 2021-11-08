@@ -182,8 +182,8 @@ function TablesRowSolicitudUsuario(props) {
                   </FormControl>
                   <FormControl>
                     <FormLabel>Adjuntar archivo</FormLabel>
-                    <InputGroup>                        
-                        {/* <FileUpload 
+                    <InputGroup>
+                      {/* <FileUpload 
                         mode="basic" 
                         maxFileSize="10000" 
                         chooseOptions={chooseOptions} 
@@ -193,70 +193,70 @@ function TablesRowSolicitudUsuario(props) {
                         onFileSelectSuccess={(file) => setSelectedFile(file.name)}
                         onFileSelectError={({ error }) => alert(error)}
                         {...register("urlImg", { required: true })}
-                        /> */}                
-                    <FileUpload 
-                    mode="basic" 
-                    auto
-                    customUpload = {true}
-                    name="archivo"                     
-                    accept=".jpg" 
-                    chooseOptions={chooseOptions}
-                    maxFileSize={1000000}                                        
-                    uploadHandler={onBasicUpload}                   
-                    />
-                    
-                    {/* <input 
+                        /> */}
+                      <FileUpload
+                        mode="basic"
+                        auto
+                        customUpload={true}
+                        name="archivo"
+                        accept=".jpg"
+                        chooseOptions={chooseOptions}
+                        maxFileSize={1000000}
+                        uploadHandler={onBasicUpload}
+                      />
+
+                      {/* <input 
                         type="file" 
                         style={botonSubirArchivo} 
                         accept="image/*"
                         onChange={(e) => setSelectedFile(e.target.[0])}/> */}
-                    {/* // {...register("urlImg", { required: true })} */}
-                  </InputGroup>
-                  {errors.urlImg?.type === 'required' &&
-                    <Alert borderRadius="10px" margin="10px 0px" status="warning">
-                      <AlertIcon />
-                      <AlertTitle>Necesita colocar una imagen</AlertTitle>
-                    </Alert>
-                  }
-                </FormControl>
-                <FormControl>
-                  <FormLabel>Situacion</FormLabel>
-                  <Input
-                    hidden="true"
-                    h="300"
-                    focusBorderColor="teal.300"
-                  />
-                  <Textarea
-                    hidden="true"
-                    h="300"
-                    focusBorderColor="teal.300"
-                    resize="none"
-                  />
-                  <textarea placeholder="Coloca la situacion por la cual desea reportar este articulo" className="chakra-textarea css-10sfhr3" {...register("motivo", { required: true })} />
-                  {errors.motivo?.type === 'required' &&
-                    <Alert borderRadius="10px" margin="10px 0px" status="warning">
-                      <AlertIcon />
-                      <AlertTitle>Necesita colocar la situacion del reporte</AlertTitle>
-                    </Alert>
-                  }
+                      {/* // {...register("urlImg", { required: true })} */}
+                    </InputGroup>
+                    {errors.urlImg?.type === 'required' &&
+                      <Alert borderRadius="10px" margin="10px 0px" status="warning">
+                        <AlertIcon />
+                        <AlertTitle>Necesita colocar una imagen</AlertTitle>
+                      </Alert>
+                    }
+                  </FormControl>
+                  <FormControl>
+                    <FormLabel>Situacion</FormLabel>
+                    <Input
+                      hidden="true"
+                      h="300"
+                      focusBorderColor="teal.300"
+                    />
+                    <Textarea
+                      hidden="true"
+                      h="300"
+                      focusBorderColor="teal.300"
+                      resize="none"
+                    />
+                    <textarea placeholder="Coloca la situacion por la cual desea reportar este articulo" className="chakra-textarea css-10sfhr3" {...register("motivo", { required: true })} />
+                    {errors.motivo?.type === 'required' &&
+                      <Alert borderRadius="10px" margin="10px 0px" status="warning">
+                        <AlertIcon />
+                        <AlertTitle>Necesita colocar la situacion del reporte</AlertTitle>
+                      </Alert>
+                    }
 
-                  {/* datos temporales */}
-                </FormControl>
-              </ModalBody>
-              <ModalFooter>
-                <Button
-                  type="submit"
-                  colorScheme="teal"
-                  borderColor="teal.400"
-                  color="teal.400"
-                  variant="ghost"
-                  mr={3}>
-                  Realizar Reporte
-                </Button>
-                <Button variant="ghost" onClick={onClose}>Cancelar</Button>
-              </ModalFooter>
-            </ModalContent>
-          </form>
+                    {/* datos temporales */}
+                  </FormControl>
+                </ModalBody>
+                <ModalFooter>
+                  <Button
+                    type="submit"
+                    colorScheme="teal"
+                    borderColor="teal.400"
+                    color="teal.400"
+                    variant="ghost"
+                    mr={3}>
+                    Realizar Reporte
+                  </Button>
+                  <Button variant="ghost" onClick={onClose}>Cancelar</Button>
+                </ModalFooter>
+              </ModalContent>
+            </form>
         </Modal>
 
       </Flex>

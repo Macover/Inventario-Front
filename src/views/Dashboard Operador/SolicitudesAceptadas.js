@@ -18,56 +18,56 @@ import Card from "components/Card/Card.js";
 import CardHeader from "components/Card/CardHeader.js";
 import CardBody from "components/Card/CardBody.js";
 
-import TablesRowSolicitudUsuarioPendiente from 'components/Tables/TablesRowSolicitudUsuarioPendiente.js';
+import TablesRowSolicitudUsuarioAceptadas from 'components/Tables/TablesRowSolicitudUsuarioAceptadas.js';
 
 import { SearchBarCustom } from 'components/Navbars/SearchBar/SearchBarCustom';
 
 
-function SolicitudesPendientesC() {
+function SolicitudesAceptadasC() {
   const textColor = useColorModeValue("gray.700", "white");
   
-  const [solicitudesPendientesE, setSolicitudesPendientesE] = useState({});
-  const solicitudesPendientes = new SolicitudUsuario();
+  const [solicitudesAceptadasE, setSolicitudesAceptadasE] = useState({});
+  const solicitudesAceptadas = new SolicitudUsuario();
 
-  const getAllSolicitudesPendientes = () =>{
-    solicitudesPendientes.getAllSolicitudesPendientes().then(data => setSolicitudesPendientesE(data));
+  const getAllSolicitudesAceptadas = () =>{
+    solicitudesAceptadas.getAllSolicitudesAceptadas().then(data => setSolicitudesAceptadasE(data));
   }
 
   useEffect(()=>{
-    getAllSolicitudesPendientes();
+    getAllSolicitudesAceptadas();
   },[]);
 
-  console.log("solicitudesPendientes", solicitudesPendientesE);
+  console.log("solicitudesAceptadas", solicitudesAceptadasE);
 
-  const validaSolicitudPendiente = () => {
-    if (Object.entries(solicitudesPendientesE).length === 0) {
+  const validaSolicitudAceptada = () => {
+    if (Object.entries(solicitudesAceptadasE).length === 0) {
       return (
-        <TablesRowSolicitudUsuarioPendiente
+        <TablesRowSolicitudUsuarioAceptadas
         numeroIteracion="sin datos"          
         />
       )
     } else {
       return(
-        solicitudesPendientesE.map((solicitudePendiente, index) => (
-          <TablesRowSolicitudUsuarioPendiente    
-          nombreCompleto = {solicitudePendiente.idUsuario.primerNombre + " " +
-          solicitudePendiente.idUsuario.segundoNombre + " " +
-          solicitudePendiente.idUsuario.apellidoP + " " +
-          solicitudePendiente.idUsuario.apellidoM}                          
+        solicitudesAceptadasE.map((solicitudAceptada, index) => (
+          <TablesRowSolicitudUsuarioAceptadas
+            nombreCompleto = {solicitudAceptada.idUsuario.primerNombre + " " +
+               solicitudAceptada.idUsuario.segundoNombre + " " +
+               solicitudAceptada.idUsuario.apellidoP + " " +
+               solicitudAceptada.idUsuario.apellidoM}                    
             numeroIteracion = {index + 1}
-            primerNombre = {solicitudePendiente.idUsuario.primerNombre}
-            segundoNombre = {solicitudePendiente.idUsuario.segundoNombre}
-            primerApellido = {solicitudePendiente.idUsuario.apellidoP}
-            segundoApellido = {solicitudePendiente.idUsuario.apellidoM}
-            nombreArea = {solicitudePendiente.idUsuario.idArea.nombreArea}
-            matricula = {solicitudePendiente.idUsuario.matricula}
-            NoSerie = {solicitudePendiente.idItem.numSerie}
-            nombreItem = {solicitudePendiente.idItem.nombreItem}
-            categoria = {solicitudePendiente.idItem.idCategoria.nombreCategoria}
-            fechaRegistro = {solicitudePendiente.created_at}
-            fechaInicio = {solicitudePendiente.fechaInicio}
-            fechaFinal = {solicitudePendiente.fechaFinal}
-            motivo = {solicitudePendiente.motivo}
+            primerNombre = {solicitudAceptada.idUsuario.primerNombre}
+            segundoNombre = {solicitudAceptada.idUsuario.segundoNombre}
+            primerApellido = {solicitudAceptada.idUsuario.apellidoP}
+            segundoApellido = {solicitudAceptada.idUsuario.apellidoM}
+            nombreArea = {solicitudAceptada.idUsuario.idArea.nombreArea}
+            matricula = {solicitudAceptada.idUsuario.matricula}
+            NoSerie = {solicitudAceptada.idItem.numSerie}
+            nombreItem = {solicitudAceptada.idItem.nombreItem}
+            categoria = {solicitudAceptada.idItem.idCategoria.nombreCategoria}
+            fechaRegistro = {solicitudAceptada.created_at}
+            fechaInicio = {solicitudAceptada.fechaInicio}
+            fechaFinal = {solicitudAceptada.fechaFinal}
+            motivo = {solicitudAceptada.motivo}
           />
         ))
       )
@@ -82,7 +82,7 @@ function SolicitudesPendientesC() {
         <CardHeader p="6px 0px 22px 0px">      
           <Flex justify="space-between" align="center" mb="1rem" w="100%">
             <Text fontSize="xl" color={textColor} fontWeight="bold">          
-              Solicitudes Pendientes
+              Solicitudes Aceptadas
             </Text>           
             <SearchBarCustom/>
           </Flex>
@@ -105,11 +105,11 @@ function SolicitudesPendientesC() {
                 <Th color="gray.400">Fecha Inicio</Th>
                 <Th color="gray.400">Fecha Final</Th>
                 <Th color="gray.400" textAlign="center">Motivo</Th>
-                <Th color="gray.400" textAlign="center">Ver</Th>                
+                <Th color="gray.400" textAlign="center">Accion</Th>                
               </Tr>
             </Thead>
             <Tbody>
-              {validaSolicitudPendiente()}
+              {validaSolicitudAceptada()}
             </Tbody>
           </Table>          
         </CardBody>
@@ -118,4 +118,4 @@ function SolicitudesPendientesC() {
   );
 }
 
-export default SolicitudesPendientesC;
+export default SolicitudesAceptadasC;

@@ -20,6 +20,7 @@ import HistorialSolicitudesUsuario from "views/Dashboard Usuario/HistorialSolici
 //imports operador.
 import InicioOperador from "views/Dashboard Operador/InicioOperador.js";
 import SolicitudesPendientes from "views/Dashboard Operador/SolicitudesPendientes.js";
+import SolicitudesAceptadas from "views/Dashboard Operador/SolicitudesAceptadas.js";
 
 import {
   HomeIcon,
@@ -183,6 +184,14 @@ var dashRoutes = [
         rtlName: "nombre de rtl", 
         icon: <HomeIcon color="inherit" />, 
         component: SolicitudesPendientes,
+        layout: "/admin" 
+      },
+      { 
+        path: "/solicitudesAceptadas", 
+        name: "Solicitudes aceptadas", 
+        rtlName: "nombre de rtl", 
+        icon: <HomeIcon color="inherit" />, 
+        component: SolicitudesAceptadas,
         layout: "/admin" 
       },
     ],
