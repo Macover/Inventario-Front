@@ -24,7 +24,7 @@ export default function Dashboard(props) {
   const mainPanel = React.createRef();
   // functions for changing the states from components
   const getRoute = () => {
-    return window.location.pathname !== "/admin/full-screen-maps";
+    return window.location.pathname !== "/usuario/full-screen-maps";
   };
   const getActiveRoute = (routes) => {
     let activeRoute = "Default Brand Text";
@@ -78,7 +78,7 @@ export default function Dashboard(props) {
       if (prop.category === "account") {
         return getRoutes(prop.views);
       }
-      if (prop.layout === "/admin") {
+      if (prop.layout === "/usuario") {
         return (
           <Route
             path={prop.layout + prop.path}
@@ -98,7 +98,7 @@ export default function Dashboard(props) {
     <ChakraProvider theme={theme} resetCss={false}>
       <Sidebar
         routes={routes}
-        logoText={"SISTEMA PARA EL CONTROL DEL MOBILIARIO EMPRESARIAL"}
+        logoText={"PURITY UI DASHBOARD"}
         display="none"
         sidebarVariant={sidebarVariant}
         {...rest}
@@ -125,12 +125,30 @@ export default function Dashboard(props) {
             <PanelContainer>
               <Switch>
                 {getRoutes(routes)}
-                <Redirect from="/admin" to="/admin/dashboard" />
+                <Redirect from="/usuario" to="/usuario/Usuarios" />
               </Switch>
             </PanelContainer>
           </PanelContent>
         ) : null}
-        <Footer />               
+        <Footer />
+        <Portal>
+          <FixedPlugin
+            secondary={getActiveNavbar(routes)}
+            fixed={fixed}
+            onOpen={onOpen}
+          />
+        </Portal>
+        <Configurator
+          secondary={getActiveNavbar(routes)}
+          isOpen={isOpen}
+          onClose={onClose}
+          isChecked={fixed}
+          onSwitch={(value) => {
+            setFixed(value);
+          }}
+          onOpaque={() => setSidebarVariant("opaque")}
+          onTransparent={() => setSidebarVariant("transparent")}
+        />
       </MainPanel>
     </ChakraProvider>
   );

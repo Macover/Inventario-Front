@@ -30,16 +30,29 @@ import {
   import { useDisclosure } from "@chakra-ui/hooks"
   
   import { FormControl, FormLabel } from "@chakra-ui/form-control"
-  import { Input, InputGroup, InputLeftAddon } from "@chakra-ui/input"
+  import { Input } from "@chakra-ui/input"
 
 // Custom components
 import Card from "components/Card/Card.js";
 import CardHeader from "components/Card/CardHeader.js";
 import CardBody from "components/Card/CardBody.js";
+import { useForm } from "react-hook-form";
 
 import TablesRowAreas from 'components/Tables/TablesRowAreas';
 
+import {
+  Alert,
+  AlertIcon,
+  AlertTitle,
+} from "@chakra-ui/react"
+
 function GetAreasAreas() {
+
+  const { register, formState: { errors }, handleSubmit, reset } = useForm();
+  const onSubmit = (areaObjeto) => {
+    console.log(areaObjeto);
+    areaService.insertArea(areaObjeto).then(data => setAreaObejto(data));
+  }
 
   const { isOpen, onOpen, onClose } = useDisclosure()
   const initialRef = React.useRef()
@@ -51,10 +64,18 @@ function GetAreasAreas() {
   const getAllAreas = () => {
     areaService.getAllAreas().then(data => setAreas(data));
   }
+
+  const [areaObjeto, setAreaObejto] = useState({});
+  
+  const insertArea = (areaObjeto) =>{
+    areaService.insertArea(areaObjeto).then(data => setAreaObejto(data));
+  }
+
   useEffect(() => {
     getAllAreas();
+    onSubmit();    
   }, []);
-  console.log("areas", areas);
+  // console.log("areas", areas);
 
   const validaDatos = () => {
     if (Object.entries(areas).length === 0) {
@@ -89,7 +110,10 @@ function GetAreasAreas() {
             </Text>
 
             <Button
-              onClick={onOpen}
+              onClick={() => {
+                onOpen();
+                reset();
+              }}
               colorScheme="teal"
               borderColor="teal.300"
               color="teal.300"
@@ -102,9 +126,10 @@ function GetAreasAreas() {
               initialFocusRef={initialRef}
               isOpen={isOpen}
               onClose={onClose}
+              isCentered              
             >
               <ModalOverlay />
-              <form>
+              <form onSubmit={handleSubmit(onSubmit)}>
                 <ModalContent>
                   <ModalHeader>Agregar una nueva Area</ModalHeader>
                   <ModalCloseButton />
@@ -112,12 +137,25 @@ function GetAreasAreas() {
                     <FormControl>
                       <FormLabel>Nombre de la area</FormLabel>
                       <Input
+                      type="hidden"
                       ref={initialRef}
                       focusBorderColor="teal.300" 
-                      placeholder="Ej. Administración" />
+                      />
+                      <input 
+                      ref={initialRef}
+                      className="chakra-input css-1sp0hs5"
+                      placeholder="Ingrese un area. Ej. Administración"
+                      {...register("nombreArea", { required: true })} />
+                      {errors.nombreArea?.type === 'required' &&
+                        <Alert borderRadius="10px" margin="10px 0px" status="warning">
+                          <AlertIcon />
+                          <AlertTitle>Necesita poner un area</AlertTitle>
+                        </Alert>
+                      }
                     </FormControl>
                   </ModalBody>
                   <ModalFooter>
+                    <input type="hidden" value="2021-07-11" {...register("created_at")}/>
                     <Button
                       type="submit"
                       colorScheme="teal"

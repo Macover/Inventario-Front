@@ -87,9 +87,9 @@ export default function Pages(props) {
     <ChakraProvider theme={theme} resetCss={false} w="100%">
       <Box ref={navRef} w="100%">
         <Portal containerRef={navRef}>
-          <AuthNavbar
+          <AuthNavbar            
             secondary={getActiveNavbar(routes)}
-            logoText="PURITY UI DASHBOARD"
+            logoText={"SISTEMA PARA EL CONTROL DEL MOBILIARIO EMPRESARIAL"}
           />
         </Portal>
         <Box w="100%">

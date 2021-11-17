@@ -161,6 +161,7 @@ function GetItemsTable() {
               initialFocusRef={initialRef}
               isOpen={isOpen}
               onClose={onClose}
+              isCentered
             >
               <ModalOverlay />
               <form onSubmit={handleSubmit(onSubmit)}>
@@ -216,7 +217,7 @@ function GetItemsTable() {
                             <AlertTitle>La descripcion es requerida</AlertTitle>
                           </Alert>
                         }
-                      <input type="hidden" value="2021-07-11" {...register("createdAt")} />                      
+                      <input type="hidden" value="2021-07-11" {...register("createdAt")} />  
                     </FormControl>
                   </ModalBody>
                   <ModalFooter>

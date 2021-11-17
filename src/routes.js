@@ -1,12 +1,3 @@
-// import
-import Dashboard from "views/Dashboard/Dashboard.js";
-import Tables from "views/Dashboard/Tables.js";
-import Billing from "views/Dashboard/Billing.js";
-import RTLPage from "views/RTL/RTLPage.js";
-import Profile from "views/Dashboard/Profile.js";
-import SignIn from "views/Pages/SignIn.js";
-import SignUp from "views/Pages/SignUp.js";
-
 // imports administrador
 import TablaUsuario from "views/Dashboard/TablaUsuario.js"
 import TablaItem from "views/Dashboard/TablaItems.js"
@@ -16,6 +7,10 @@ import TablaArea from "views/Dashboard/TablaAreas.js"
 import InicioU from "views/Dashboard Usuario/InicioU.js";
 import CategoriaComputadoras from "views/Dashboard Usuario/CategoriaComputadoras.js";
 import HistorialSolicitudesUsuario from "views/Dashboard Usuario/HistorialSolicitudesUsuario.js";
+//registro
+import Registro from "views/Pages/Registro.js";
+// login
+import Login from "views/Pages/Login.js";
 
 //imports operador.
 import InicioOperador from "views/Dashboard Operador/InicioOperador.js";
@@ -23,83 +18,13 @@ import SolicitudesPendientes from "views/Dashboard Operador/SolicitudesPendiente
 import SolicitudesAceptadas from "views/Dashboard Operador/SolicitudesAceptadas.js";
 
 import {
-  HomeIcon,
-  StatsIcon,
-  CreditIcon,
-  PersonIcon,
-  DocumentIcon,
+  HomeIcon,    
+  PersonIcon,  
   RocketIcon,
-  GlobeIcon,
-  SupportIcon,
+  GlobeIcon,  
 } from "components/Icons/Icons";
 
-var dashRoutes = [
-  {
-    path: "/dashboard",
-    name: "Dashboard",
-    rtlName: "لوحة القيادة",
-    icon: <HomeIcon color="inherit" />,
-    component: Dashboard,
-    layout: "/admin",
-  },
-  {
-    path: "/tables",
-    name: "Tables",
-    rtlName: "لوحة القيادة",
-    icon: <StatsIcon color="inherit" />,
-    component: Tables,
-    layout: "/admin",
-  },
-  {
-    path: "/billing",
-    name: "Billing",
-    rtlName: "لوحة القيادة",
-    icon: <CreditIcon color="inherit" />,
-    component: Billing,
-    layout: "/admin",
-  },
-  {
-    path: "/rtl-support-page",
-    name: "RTL",
-    rtlName: "آرتيإل",
-    icon: <SupportIcon color="inherit" />,
-    component: RTLPage,
-    layout: "/rtl",
-  },
-  {
-    name: "ACCOUNT PAGES",
-    category: "account",
-    rtlName: "صفحات",
-    state: "pageCollapse",
-    views: [
-      {
-        path: "/profile",
-        name: "Profile",
-        rtlName: "لوحة القيادة",
-        icon: <PersonIcon color="inherit" />,
-        secondaryNavbar: true,
-        component: Profile,
-        layout: "/admin",
-      },
-      {
-        path: "/signin",
-        name: "Sign In",
-        rtlName: "لوحة القيادة",
-        icon: <DocumentIcon color="inherit" />,
-        component: SignIn,
-        layout: "/auth",
-      },
-      {
-        path: "/signup",
-        name: "Sign Up",
-        rtlName: "لوحة القيادة",
-        icon: <RocketIcon color="inherit" />,
-        secondaryNavbar: true,
-        component: SignUp,
-        layout: "/auth",
-      },
-    ],
-  },
+var dashRoutes = [  
   {
     name: "VISTAS ADMINISTRADOR",
     category: "account",
@@ -161,6 +86,22 @@ var dashRoutes = [
         icon: <HomeIcon color="inherit" />, 
         component: HistorialSolicitudesUsuario,
         layout: "/admin" 
+      },
+      {
+        path: "/Registro", 
+        name: "Registro", 
+        rtlName: "nombre de rtl", 
+        icon: <HomeIcon color="inherit" />, 
+        component: Registro,
+        layout: "/auth" 
+      },
+      {
+        path: "/login",
+        name: "Login",
+        rtlName: "nombre de rtl",
+        icon: <HomeIcon color="inherit" />,
+        component: Login,
+        layout: "/auth",
       },
     ],
   },
